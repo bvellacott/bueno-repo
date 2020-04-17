@@ -9,3 +9,18 @@ the solution should be simple - after all, all I want is to have my libraries in
 ## aliases are all I need
 all I really need is aliases and an easy way to set them up, the my test/dev code can read the aliases to resolve
 modules from within the directory structure rather than looking up an external service like npm
+
+## example
+add the following to your `package.json`
+```json
+  "moduleAliases": {
+    "a-mono-repo-package": "./packages/a-mono-repo-package"
+  }
+```
+
+and this as the first lines of your test/dev code
+
+```js
+var buenoRepo = require('bueno-repo')
+buenoRepo.setupAliases()
+```
