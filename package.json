@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/bvellacott/bueno-repo#readme",
   "devDependencies": {
-    "mocha": "^7.1.1"
+    "tap": "14.10.7"
   },
   "moduleAliases": {
     "a-mono-repo-package": "./packages/a-mono-repo-package"
