@@ -4,7 +4,7 @@
   "description": "bueno mono repo solution",
   "main": "src/index.js",
   "scripts": {
-    "test": "node ./scripts/run-tests.js"
+    "test": "tap"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/bvellacott/bueno-repo#readme",
   "devDependencies": {
-    "tap": "14.10.7"
+    "tap": "^14.10.7"
   },
   "moduleAliases": {
     "a-mono-repo-package": "./packages/a-mono-repo-package"
