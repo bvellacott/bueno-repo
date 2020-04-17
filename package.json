@@ -1,0 +1,31 @@
+{
+  "name": "bueno-repo",
+  "version": "1.0.0",
+  "description": "bueno mono repo solution",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node ./scripts/run-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvellacott/bueno-repo.git"
+  },
+  "keywords": [
+    "bueno",
+    "mono",
+    "repo",
+    "solution"
+  ],
+  "author": "Benjamin Vellacott",
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://github.com/bvellacott/bueno-repo/issues"
+  },
+  "homepage": "https://github.com/bvellacott/bueno-repo#readme",
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  },
+  "moduleAliases": {
+    "a-mono-repo-package": "./packages/a-mono-repo-package"
+  }
+}
