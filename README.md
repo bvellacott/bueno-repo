@@ -1,3 +1,5 @@
+[![Build
+Status](https://travis-ci.com/bvellacott/bueno-repo.svg?branch=master&status=passed)](https://travis-ci.com/github/bvellacott/bueno-repo)
 # bueno-repo
 bueno mono repo solution
 
