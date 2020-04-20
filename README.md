@@ -26,11 +26,11 @@ in your package.json add the following:
 ```json
 /* ./package.json */
 {
-  // ...
+  ...
   "moduleAliases": {
     "@your-packages/": "./path/to/your/packages/"
   }
-  // ...
+  ...
 }
 ```
 
@@ -39,7 +39,7 @@ give each of your packages a prefixed name as follows:
 /* ./path/to/your/packages/a-mono-repo-package/package.json */
 {
   "name": "@your-packages/a-mono-repo-package",
-  // ...
+  ...
 }
 ```
 
