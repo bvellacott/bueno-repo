@@ -64,7 +64,7 @@ have mono repo packages that you wish to alias in dev you can define an addition
 ```sh
 npm test
 ```
-bueno repo has been tested on **node 4 - 13**
+bueno repo has been tested on **node 4, 5, 6, 7, 8, 9, 10, 11, 12, 13**
 
 ## special thanks
 This project was inspired by https://github.com/ilearnio/module-alias, but I simplified the code a little.
