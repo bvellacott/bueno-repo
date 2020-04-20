@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "@my-libs/another-mono-repo-test-package",
   "version": "1.0.0",
-  "description": "bueno mono repo test",
+  "description": "another mono repo test package",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

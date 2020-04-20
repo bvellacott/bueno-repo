@@ -14,7 +14,9 @@
     "bueno",
     "mono",
     "repo",
-    "solution"
+    "solution",
+    "module",
+    "alias"
   ],
   "author": "Benjamin Vellacott",
   "license": "GPL-2.0-only",
@@ -22,10 +24,13 @@
     "url": "https://github.com/bvellacott/bueno-repo/issues"
   },
   "homepage": "https://github.com/bvellacott/bueno-repo#readme",
+  "dependencies": {
+    "a-mono-repo-package": "^1.2.3"
+  },
   "devDependencies": {
     "tap": "3.1.2"
   },
   "moduleAliases": {
-    "a-mono-repo-package": "./packages/a-mono-repo-package"
+    "@my-libs/": "./packages/"
   }
 }

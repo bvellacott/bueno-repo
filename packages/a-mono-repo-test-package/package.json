@@ -1,0 +1,11 @@
+{
+  "name": "@my-libs/a-mono-repo-test-package",
+  "version": "1.0.0",
+  "description": "a mono repo test package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-2.0-only"
+}
