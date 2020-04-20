@@ -1,10 +1,16 @@
+[![Build
+Status](https://travis-ci.com/bvellacott/bueno-repo.svg?branch=master&status=passed)](https://travis-ci.com/github/bvellacott/bueno-repo)
 # bueno-repo
-A bueno mono repo solution. Basically, I don't like the current mono repo solutions out there, where packages are symlinked and 
-hoisted and what not. I would rather have a simple solution for resolving my mono repo packages locally in development and test
-code and handle the responsibility for versioning and publishing the packages myself. This is a solution for doing that. 
+A bueno mono repo solution. 
+
+## rant
+Basically, I don't like the current mono repo solutions out there, where packages are symlinked and hoisted and what not.
 
 ## mono repos are too hard
-the solution should be simple - after all, all I want is to have my libraries in the same git repo as my main app
+The solution should be simple - after all, all I want is to have my libraries in the same git repo as my main app.
+Personally I don't mind having to take the responsibility of versioning and publishing my packages myself, instead
+of automating it and actually just losing track of what packages have actually changed, because the tool is bumping
+the version of all my packages regardless of any code changes. 
 
 ## aliases are all I need
 all I really need is aliases and an easy way to set them up, then my test / dev code can read the aliases to resolve
@@ -47,6 +53,9 @@ now you can require your mono repo package as follows:
 require('@your-packages/a-mono-repo-package')
 ```
 
+**Remember!** If your packages depend on each other, you'll have to add the moduleAliases to their `package.json` also,
+and run the snippet in their respective test code
+
 By design the above snippet shouldn't be run in a production setup, but if you find a valid setup where you do want
 to do that, I don't see any obvious objections. For instance, if you just want to alias local directories so that
 you don't need to write relative requires which look like the following `require('../../../../some/local/package')`,
@@ -58,7 +67,7 @@ npm test
 ```
 
 ## special thanks
-this project was inspired by https://github.com/ilearnio/module-alias, but I simplified the code a little
+This project was inspired by https://github.com/ilearnio/module-alias, but I simplified the code a little.
 
 ## contributing
-if you see something you want to add/change, please create a pr which contains a passing test for your changes
+If you see something you want to add/change, please create a pr which contains a passing test for your changes.
