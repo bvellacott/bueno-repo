@@ -20,14 +20,10 @@
   ],
   "author": "Benjamin Vellacott",
   "license": "GPL-2.0-only",
-  "access": "public",
   "bugs": {
     "url": "https://github.com/bvellacott/bueno-repo/issues"
   },
   "homepage": "https://github.com/bvellacott/bueno-repo#readme",
-  "devDependencies": {
-    "teenytest": "5.3.0"
-  },
   "moduleAliases": {
     "@my-libs/": "./packages/"
   }

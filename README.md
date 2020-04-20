@@ -65,6 +65,7 @@ this might be usefull.
 ```sh
 npm test
 ```
+bueno repo has been tested on **node 4 - 13**
 
 ## special thanks
 This project was inspired by https://github.com/ilearnio/module-alias, but I simplified the code a little.
