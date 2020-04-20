@@ -7,16 +7,23 @@ var Module = module.constructor.length > 1
   ? module.constructor
   : BuiltinModule
 
-var moduleAliases = (pkgJson.moduleAliases || {})
-var aliases = []
-for (var alias in moduleAliases) {
-  aliases.push({
-    regex: new RegExp(alias),
-    aliasedPath: moduleAliases[alias],
-  })
+
+function createAliasReqularExpressions(aliasesMap) {
+  var aliases = []
+  for (var alias in aliasesMap) {
+    aliases.push({
+      regex: new RegExp(alias),
+      aliasedPath: aliasesMap[alias],
+    })
+  }
+  return aliases
 }
 
-function transformAlias(requiredPath, basedir) {
+var moduleAliases = createAliasReqularExpressions(pkgJson.moduleAliases || {})
+var dependencyAliases = createAliasReqularExpressions(pkgJson.dependencyAliases || {})
+
+function transformAlias(requiredPath, basedir, aliases) {
+  aliases = aliases || moduleAliases
   basedir = basedir || process.cwd()
   for (var i = 0; i < aliases.length; i++) {
     var alias = aliases[i]
@@ -28,13 +35,22 @@ function transformAlias(requiredPath, basedir) {
   return requiredPath;
 }
 
-function setupAliases() {
+function setupAliases(aliases) {
+  aliases = aliases || moduleAliases
   var oldResolveFilename = Module._resolveFilename
   Module._resolveFilename = function (request, parentModule, isMain, options) {
-    var transformedRequest = transformAlias(request)
+    var transformedRequest = transformAlias(request, process.cwd(), aliases)
     return oldResolveFilename.call(this, transformedRequest, parentModule, isMain, options)
   }	
 }
 
+function setupDependencyAliases() {
+  setupAliases(dependencyAliases)	
+}
+
+exports.moduleAliases = moduleAliases
+exports.dependencyAliases = dependencyAliases
+exports.createAliasReqularExpressions = createAliasReqularExpressions
 exports.transformAlias = transformAlias
 exports.setupAliases = setupAliases
+exports.setupDependencyAliases = setupDependencyAliases

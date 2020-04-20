@@ -56,6 +56,10 @@ require('@your-packages/a-mono-repo-package')
 **Remember!** If your packages depend on each other, you'll have to add the moduleAliases to their `package.json` also,
 and run the snippet in their respective test code
 
+`setupAliases()` will look at `moduleAliases` by default. If you want to use module aliases in a production setup, but you also
+have mono repo packages that you wish to alias in dev you can define an additional `dependencyAliases: {}` object in your
+`package.json` and set them up separately in dev / test code useing `setupDependencyAliases()`
+
 By design the above snippet shouldn't be run in a production setup, but if you find a valid setup where you do want
 to do that, I don't see any obvious objections. For instance, if you just want to alias local directories so that
 you don't need to write relative requires which look like the following `require('../../../../some/local/package')`,
