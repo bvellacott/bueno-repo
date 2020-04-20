@@ -20,12 +20,14 @@
   ],
   "author": "Benjamin Vellacott",
   "license": "GPL-2.0-only",
+  "access": "public",
   "bugs": {
     "url": "https://github.com/bvellacott/bueno-repo/issues"
   },
   "homepage": "https://github.com/bvellacott/bueno-repo#readme",
   "dependencies": {
-    "a-mono-repo-package": "^1.2.3"
+    "a-mono-repo-test-package": "1.0.0",
+    "another-mono-repo-test-package": "1.0.0"
   },
   "devDependencies": {
     "tap": "3.1.2"
