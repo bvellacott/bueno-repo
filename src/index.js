@@ -19,8 +19,9 @@ function createAliasReqularExpressions(aliasesMap) {
   return aliases
 }
 
-var moduleAliases = createAliasReqularExpressions(pkgJson.moduleAliases || {})
-var dependencyAliases = createAliasReqularExpressions(pkgJson.dependencyAliases || {})
+var moduleAliases
+var dependencyAliases
+var allAliases = []
 
 function transformAlias(requiredPath, basedir, aliases) {
   aliases = aliases || moduleAliases
@@ -35,17 +36,33 @@ function transformAlias(requiredPath, basedir, aliases) {
   return requiredPath;
 }
 
+var oldResolveFilename = Module._resolveFilename
+Module._resolveFilename = function (request, parentModule, isMain, options) {
+  var transformedRequest = transformAlias(request, process.cwd(), allAliases)
+  return oldResolveFilename.call(this, transformedRequest, parentModule, isMain, options)
+}	
+
 function setupAliases(aliases) {
-  aliases = aliases || moduleAliases
-  var oldResolveFilename = Module._resolveFilename
-  Module._resolveFilename = function (request, parentModule, isMain, options) {
-    var transformedRequest = transformAlias(request, process.cwd(), aliases)
-    return oldResolveFilename.call(this, transformedRequest, parentModule, isMain, options)
-  }	
+  if (!aliases) {
+    return setupModuleAliases()
+  }
+  allAliases = allAliases.concat(aliases)	
+}
+
+function setupModuleAliases() {
+  if (moduleAliases) {
+    throw new Error('moduleAliases have already been setup')
+  }
+  var moduleAliases = createAliasReqularExpressions(pkgJson.moduleAliases || {})
+  setupAliases(moduleAliases)
 }
 
 function setupDependencyAliases() {
-  setupAliases(dependencyAliases)	
+  if (dependencyAliases) {
+    throw new Error('dependencyAliases have already been setup')
+  }
+  var dependencyAliases = createAliasReqularExpressions(pkgJson.dependencyAliases || {})
+  setupAliases(dependencyAliases)
 }
 
 exports.moduleAliases = moduleAliases
