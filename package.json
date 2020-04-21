@@ -1,6 +1,6 @@
 {
   "name": "bueno-repo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "bueno mono repo solution",
   "main": "src/index.js",
   "scripts": {

@@ -24,7 +24,7 @@ var dependencyAliases
 var allAliases = []
 
 function transformAlias(requiredPath, basedir, aliases) {
-  aliases = aliases || moduleAliases
+  aliases = aliases || allAliases
   basedir = basedir || process.cwd()
   for (var i = 0; i < aliases.length; i++) {
     var alias = aliases[i]
@@ -46,7 +46,9 @@ function setupAliases(aliases) {
   if (!aliases) {
     return setupModuleAliases()
   }
-  allAliases = allAliases.concat(aliases)	
+  for (var i = 0; i < aliases.length; i++) {
+    allAliases.push(aliases[i])	
+  }
 }
 
 function setupModuleAliases() {
@@ -65,6 +67,7 @@ function setupDependencyAliases() {
   setupAliases(dependencyAliases)
 }
 
+exports.allAliases = moduleAliases
 exports.moduleAliases = moduleAliases
 exports.dependencyAliases = dependencyAliases
 exports.createAliasReqularExpressions = createAliasReqularExpressions
