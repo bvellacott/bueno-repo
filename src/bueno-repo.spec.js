@@ -53,3 +53,35 @@ try {
   testRed(e.message)
   throw e
 }
+
+try {
+  // try and transform a standard module alias as if on the server side
+  // should still resolve to the node standard library
+  var transformAlias = require('.').transformAlias
+  var stream = transformAlias('stream', '/base/dir');
+  assert.equal(stream, 'stream')
+  testGreen('correctly didn\'t transform the standard module alias in node')
+} catch (e) {
+  testRed('incorrectly transformed the standard module alias in node')
+}
+
+try {
+  // try and transform a standard module alias as if in the browser
+  // should resolve to the browser version
+  var transformBrowserAlias = require('.').transformBrowserAlias
+  var stream = transformBrowserAlias('stream', '/base/dir');
+  assert.equal(stream, '/base/dir/browserModules/stream');
+  testGreen('transformed the standard module alias correctly in the browser')
+} catch (e) {
+  testRed('failed to transform the standard module alias correctly in the browser')
+}
+
+try {
+  // try and load a standard module alias as in node
+  // should still resolve to the node standard library
+  var stream = require('stream');
+  assert.equal(typeof stream.Duplex, 'function');
+  testGreen('resolved the standard module even though there is a browser override')
+} catch (e) {
+  testRed('failed to resolve the standard module correctly')
+}

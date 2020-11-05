@@ -28,6 +28,7 @@
     "@/local/": "./src/locally/aliased/"
   },
   "dependencyAliases": {
-    "@my-libs/": "./packages/"
+    "@my-libs/": "./packages/",
+    "stream": "./browserModules/stream"
   }
 }

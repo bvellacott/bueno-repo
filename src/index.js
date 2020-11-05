@@ -7,6 +7,11 @@ var Module = module.constructor.length > 1
   ? module.constructor
   : BuiltinModule
 
+var builtinModules = require("module").builtinModules
+var builtins = {}
+for (var i = 0; i < builtinModules.length; i++) {
+  builtins[builtinModules[i]] = true
+}
 
 function createAliasReqularExpressions(aliasesMap) {
   var aliases = []
@@ -23,7 +28,14 @@ var moduleAliases
 var dependencyAliases
 var allAliases = []
 
-function transformAlias(requiredPath, basedir, aliases) {
+function transformBrowserAlias(requiredPath, basedir, aliases) {
+  return transformAlias(requiredPath, basedir, aliases, true)
+}
+
+function transformAlias(requiredPath, basedir, aliases, isBrowser) {
+  if (!isBrowser && builtins[requiredPath]) {
+    return requiredPath
+  }
   aliases = aliases || allAliases
   basedir = basedir || process.cwd()
   for (var i = 0; i < aliases.length; i++) {
@@ -72,5 +84,6 @@ exports.moduleAliases = moduleAliases
 exports.dependencyAliases = dependencyAliases
 exports.createAliasReqularExpressions = createAliasReqularExpressions
 exports.transformAlias = transformAlias
+exports.transformBrowserAlias = transformBrowserAlias
 exports.setupAliases = setupAliases
 exports.setupDependencyAliases = setupDependencyAliases
