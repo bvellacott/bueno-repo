@@ -99,7 +99,7 @@ function setupDependencyAliases() {
   setupAliases(dependencyAliases)
 }
 
-exports.allAliases = moduleAliases
+exports.allAliases = allAliases
 exports.moduleAliases = moduleAliases
 exports.dependencyAliases = dependencyAliases
 exports.createAliasReqularExpressions = createAliasReqularExpressions
